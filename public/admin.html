@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Video Studio • Admin</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <header class="top">
+      <a class="brand" href="/">
+        <span class="brand-mark">▶</span> Video Studio
+      </a>
+      <div class="nav-actions">
+        <label class="lang-picker" for="language">
+          <span data-i18n="languageLabel">Langue</span>
+          <select id="language" aria-label="Language / Langue">
+            <option value="fr">Français</option>
+            <option value="en">English</option>
+          </select>
+        </label>
+        <a class="navlink" href="./index.html" >Galerie publique</a>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero compact">
+        <div class="eyebrow" data-i18n="private">Accès privé</div>
+        <h1 data-i18n="administration">Administration</h1>
+        <p data-i18n="adminIntro">Ajoutez, modifiez, remplacez et supprimez vos images et vidéos.</p>
+      </section>
+
+      <section id="login-panel" class="panel">
+        <h2 data-i18n="login">Connexion administrateur</h2>
+        <form id="login-form">
+          <label>
+            <span data-i18n="email">Adresse e-mail</span>
+            <input id="email" type="email" autocomplete="username" required placeholder="admin@example.com">
+          </label>
+          <label>
+            <span data-i18n="password">Mot de passe</span>
+            <input id="password" type="password" autocomplete="current-password" required>
+          </label>
+          <button type="submit" data-i18n="signIn">Se connecter</button>
+        </form>
+      </section>
+
+      <section id="dashboard" hidden>
+        <div class="panel">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow" data-i18n="dashboard">Espace administrateur</div>
+              <h2 data-i18n="addVideo">Publier un média</h2>
+            </div>
+            <button class="secondary" id="logout" type="button" data-i18n="logout">Déconnexion</button>
+          </div>
+          <p data-i18n="uploadIntro">Les images et vidéos sont stockées sur Cloudinary et apparaissent automatiquement sur la galerie publique.</p>
+          <p id="cloud-status" class="small-note"></p>
+
+          <form id="upload-form">
+            <label>
+              <span data-i18n="mediaType">Type de fichier</span>
+              <select id="media-type">
+                <option value="video" data-i18n="video">Vidéo</option>
+                <option value="image" data-i18n="image">Image</option>
+              </select>
+            </label>
+            <label>
+              <span data-i18n="title">Titre</span>
+              <input id="title" type="text" minlength="2" maxlength="100" data-i18n-placeholder="titlePlaceholder" placeholder="Ex. : Présentation du projet" required>
+            </label>
+            <label>
+              <span data-i18n="file">Image ou vidéo (image ≤ 15 Mo, vidéo ≤ 90 Mo)</span>
+              <input id="file" type="file" accept="video/mp4,video/quicktime,video/webm" required>
+            </label>
+            <button type="submit" id="upload-button" data-i18n="publish">Publier</button>
+            <progress id="upload-progress" value="0" max="100" hidden></progress>
+          </form>
+        </div>
+
+        <div class="section-head videos-heading">
+          <h2 data-i18n="manage">Gérer les médias</h2>
+          <button id="refresh" class="secondary" type="button" data-i18n="refresh">Actualiser</button>
+        </div>
+
+        <p class="small-note" data-i18n="manageIntro">Renommer, remplacer ou supprimer les images et vidéos publiées.</p>
+        <div id="admin-loading" class="message" data-i18n="loading">Chargement des médias…</div>
+        <div id="admin-videos" class="admin-grid"></div>
+      </section>
+
+      <p id="status" role="status" aria-live="polite"></p>
+    </main>
+
+    <footer data-i18n="footerAdmin">Video Studio · Administration privée</footer>
+
+    <script src="./i18n.js" defer></script>
+    <script src="./admin/admin.js" defer></script>
+  </body>
+</html>
